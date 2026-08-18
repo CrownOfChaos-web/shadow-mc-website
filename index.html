@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Shadow MC | Discord Bot</title>
+
+  <meta name="description"
+        content="Shadow MC — Powerful Discord bot for moderation, tickets, logs and server management.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #07070d;
+      --card: #11111b;
+      --card-hover: #171725;
+      --border: #29293a;
+      --purple: #5865f2;
+      --purple-light: #7c83ff;
+      --text: #ffffff;
+      --muted: #9b9baa;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Background */
+
+    body::before {
+      content: "";
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      background: var(--purple);
+      filter: blur(180px);
+      opacity: 0.12;
+      top: -180px;
+      left: -150px;
+      z-index: -1;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      background: #8b5cf6;
+      filter: blur(180px);
+      opacity: 0.09;
+      right: -150px;
+      bottom: -180px;
+      z-index: -1;
+    }
+
+    /* Navbar */
+
+    nav {
+      height: 72px;
+      padding: 0 7%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      background: rgba(7, 7, 13, 0.82);
+      backdrop-filter: blur(14px);
+
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .logo span {
+      color: var(--purple);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .menu {
+      display: none;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    /* Hero */
+
+    .hero {
+      min-height: 720px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+      padding: 80px 20px;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(88,101,242,0.20),
+          transparent 55%
+        );
+    }
+
+    .hero-content {
+      max-width: 850px;
+      animation: fadeUp
