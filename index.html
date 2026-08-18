@@ -3,138 +3,344 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Shadow MC | Discord Bot</title>
-
-  <meta name="description"
-        content="Shadow MC — Powerful Discord bot for moderation, tickets, logs and server management.">
+  <title>Shadow MC Bot</title>
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-      scroll-behavior: smooth;
-    }
-
-    :root {
-      --bg: #07070d;
-      --card: #11111b;
-      --card-hover: #171725;
-      --border: #29293a;
-      --purple: #5865f2;
-      --purple-light: #7c83ff;
-      --text: #ffffff;
-      --muted: #9b9baa;
+      font-family: Arial, sans-serif;
     }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
+      background: #0b0b10;
+      color: white;
+      line-height: 1.6;
     }
-
-    /* Background */
-
-    body::before {
-      content: "";
-      position: fixed;
-      width: 450px;
-      height: 450px;
-      background: var(--purple);
-      filter: blur(180px);
-      opacity: 0.12;
-      top: -180px;
-      left: -150px;
-      z-index: -1;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      width: 450px;
-      height: 450px;
-      background: #8b5cf6;
-      filter: blur(180px);
-      opacity: 0.09;
-      right: -150px;
-      bottom: -180px;
-      z-index: -1;
-    }
-
-    /* Navbar */
 
     nav {
-      height: 72px;
-      padding: 0 7%;
-
+      height: 70px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-
+      padding: 0 8%;
+      background: #111118;
+      border-bottom: 1px solid #242432;
       position: sticky;
       top: 0;
-      z-index: 100;
-
-      background: rgba(7, 7, 13, 0.82);
-      backdrop-filter: blur(14px);
-
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      z-index: 10;
     }
 
     .logo {
       font-size: 24px;
-      font-weight: 900;
+      font-weight: bold;
     }
 
     .logo span {
-      color: var(--purple);
+      color: #5865f2;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-
-    .nav-links a {
-      color: var(--muted);
+    nav a {
+      color: #aaa;
       text-decoration: none;
-      font-size: 14px;
-      transition: 0.25s;
+      margin-left: 25px;
     }
 
-    .nav-links a:hover {
+    nav a:hover {
       color: white;
     }
 
-    .menu {
-      display: none;
-      font-size: 26px;
-      cursor: pointer;
-    }
-
-    /* Hero */
-
     .hero {
-      min-height: 720px;
-
+      min-height: 650px;
       display: flex;
-      align-items: center;
       justify-content: center;
-
+      align-items: center;
       text-align: center;
-      padding: 80px 20px;
-
+      padding: 60px 20px;
       background:
-        radial-gradient(
-          circle at center,
-          rgba(88,101,242,0.20),
-          transparent 55%
-        );
+        radial-gradient(circle at center, #20204a 0%, #0b0b10 55%);
     }
 
-    .hero-content {
-      max-width: 850px;
-      animation: fadeUp
+    .hero h1 {
+      font-size: clamp(45px, 8vw, 85px);
+      margin-bottom: 15px;
+    }
+
+    .hero h1 span {
+      color: #5865f2;
+    }
+
+    .hero p {
+      color: #aaa;
+      max-width: 650px;
+      margin: auto;
+      font-size: 18px;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.2s;
+      display: inline-block;
+    }
+
+    .primary {
+      background: #5865f2;
+      color: white;
+    }
+
+    .secondary {
+      background: #22222d;
+      color: white;
+      border: 1px solid #333342;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      opacity: 0.9;
+    }
+
+    section {
+      padding: 80px 8%;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .title h2 {
+      font-size: 38px;
+    }
+
+    .title p {
+      color: #888;
+      margin-top: 8px;
+    }
+
+    .features,
+    .commands {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #13131c;
+      border: 1px solid #242432;
+      border-radius: 14px;
+      padding: 25px;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #5865f2;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #999;
+    }
+
+    code {
+      color: #8f96ff;
+      background: #0b0b10;
+      padding: 4px 7px;
+      border-radius: 5px;
+    }
+
+    .status {
+      text-align: center;
+      background: #101018;
+    }
+
+    .online {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 18px;
+      border-radius: 30px;
+      background: #173b25;
+      color: #58e58a;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+      border-top: 1px solid #242432;
+      background: #0a0a0f;
+    }
+
+    @media (max-width: 650px) {
+      nav {
+        padding: 0 5%;
+      }
+
+      nav div:last-child {
+        display: none;
+      }
+
+      section {
+        padding: 60px 5%;
+      }
+
+      .hero {
+        min-height: 580px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">Shadow <span>MC</span></div>
+
+    <div>
+      <a href="#features">Features</a>
+      <a href="#commands">Commands</a>
+      <a href="#status">Status</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <h1>Shadow <span>MC</span></h1>
+
+      <p>
+        A powerful Discord bot made for moderation,
+        server management, tickets, logs and more.
+      </p>
+
+      <div class="buttons">
+        <a
+          class="btn primary"
+          href="https://discord.com/oauth2/authorize?client_id=1526258450294771992"
+          target="_blank">
+          ➕ Invite Bot
+        </a>
+
+        <a
+          class="btn secondary"
+          href="https://discord.gg/3rmDBDKeF"
+          target="_blank">
+          💬 Join Discord
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="title">
+      <h2>Features</h2>
+      <p>Everything your Discord server needs.</p>
+    </div>
+
+    <div class="features">
+
+      <div class="card">
+        <h3>🛡️ Moderation</h3>
+        <p>Ban, kick and timeout commands for server moderation.</p>
+      </div>
+
+      <div class="card">
+        <h3>🎫 Tickets</h3>
+        <p>Easy ticket system for your community.</p>
+      </div>
+
+      <div class="card">
+        <h3>📜 Logs</h3>
+        <p>Keep track of important server actions.</p>
+      </div>
+
+      <div class="card">
+        <h3>👋 Welcome</h3>
+        <p>Welcome new members automatically.</p>
+      </div>
+
+      <div class="card">
+        <h3>📊 Polls</h3>
+        <p>Create polls and let your community vote.</p>
+      </div>
+
+      <div class="card">
+        <h3>🔓 Unban</h3>
+        <p>Manage bans and unban members easily.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="commands">
+    <div class="title">
+      <h2>Commands</h2>
+      <p>Some of Shadow MC's commands.</p>
+    </div>
+
+    <div class="commands">
+
+      <div class="card">
+        <h3><code>/ban</code></h3>
+        <p>Ban a member from your server.</p>
+      </div>
+
+      <div class="card">
+        <h3><code>/kick</code></h3>
+        <p>Kick a member from your server.</p>
+      </div>
+
+      <div class="card">
+        <h3><code>/timeout</code></h3>
+        <p>Timeout a member.</p>
+      </div>
+
+      <div class="card">
+        <h3><code>/ticket</code></h3>
+        <p>Create a support ticket.</p>
+      </div>
+
+      <div class="card">
+        <h3><code>/poll</code></h3>
+        <p>Create a community poll.</p>
+      </div>
+
+      <div class="card">
+        <h3><code>/unban</code></h3>
+        <p>Unban a member.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="status" class="status">
+    <div class="title">
+      <h2>Bot Status</h2>
+      <p>Shadow MC</p>
+
+      <div class="online">
+        🟢 Online
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Shadow MC Bot • All rights reserved.
+  </footer>
+
+</body>
+  </html>
